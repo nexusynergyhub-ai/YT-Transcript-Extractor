@@ -8,3 +8,6 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: "3.11"
+      - key: YouTube_Data_API_v3
+        sync: false  # Set this in Render dashboard
+

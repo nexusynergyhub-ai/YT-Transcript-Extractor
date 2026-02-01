@@ -272,7 +272,8 @@ def run_scraper(job: ScraperJob):
 @app.route('/')
 def index():
     """Homepage with input form."""
-    return render_template('index.html')
+    has_env_key = bool(os.environ.get('YouTube_Data_API_v3'))
+    return render_template('index.html', has_env_key=has_env_key)
 
 
 @app.route('/scrape', methods=['POST'])
@@ -284,8 +285,12 @@ def start_scrape():
     if not channel_url:
         return render_template('index.html', error='Please enter a channel URL')
     
+    # Use environment variable as fallback if no API key provided
     if not api_key:
-        return render_template('index.html', error='Please enter your YouTube API key')
+        api_key = os.environ.get('YouTube_Data_API_v3', '')
+    
+    if not api_key:
+        return render_template('index.html', error='Please enter your YouTube API key or set YouTube_Data_API_v3 environment variable')
     
     # Create job
     job_id = str(uuid.uuid4())
