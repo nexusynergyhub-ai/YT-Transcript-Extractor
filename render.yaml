@@ -10,4 +10,7 @@ services:
         value: "3.11"
       - key: YouTube_Data_API_v3
         sync: false  # Set this in Render dashboard
+      - key: PROXY_URL
+        sync: false  # Optional: e.g., http://proxy:8080
+
 

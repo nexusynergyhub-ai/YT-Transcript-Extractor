@@ -27,8 +27,13 @@ app = Flask(__name__)
 # In-memory job storage (use Redis for production)
 jobs = {}
 
-# Initialize transcript API client
-transcript_api = YouTubeTranscriptApi()
+# Initialize transcript API client with optional proxy support
+proxy_url = os.environ.get('PROXY_URL')
+if proxy_url:
+    proxies = {'http': proxy_url, 'https': proxy_url}
+    transcript_api = YouTubeTranscriptApi(proxies=proxies)
+else:
+    transcript_api = YouTubeTranscriptApi()
 
 
 class ScraperJob:

@@ -26,8 +26,13 @@ from youtube_transcript_api._errors import (
     VideoUnavailable,
 )
 
-# Initialize transcript API client (new API syntax for v1.2.0+)
-transcript_api = YouTubeTranscriptApi()
+# Initialize transcript API client with optional proxy support (new API syntax for v1.2.0+)
+proxy_url = os.environ.get('PROXY_URL')
+if proxy_url:
+    proxies = {'http': proxy_url, 'https': proxy_url}
+    transcript_api = YouTubeTranscriptApi(proxies=proxies)
+else:
+    transcript_api = YouTubeTranscriptApi()
 
 
 def extract_channel_id(youtube, channel_url: str) -> str:

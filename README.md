@@ -35,6 +35,8 @@ python youtube_scraper.py "https://www.youtube.com/@ChannelName" --api-key YOUR_
 
 ## Deploy to Render.com
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
 1. Push this folder to a GitHub repository
 2. Go to [Render.com](https://render.com) → New → Blueprint
 3. Connect your repository
